@@ -1,0 +1,51 @@
+// Swap function examples illustrating different pointer concepts.
+// The first three implementations do not work for various reasons explained below.
+// The last two implementations are good.
+
+
+// BAD
+// Doesn't do anything b/c x and y are passed by value.
+void bad_val_swap(int x, int y)
+{
+    int temp;
+    temp = x;
+    x = y;
+    y = temp;
+}
+
+
+// BAD
+// Doesn't do anything b/c px and py are passed by value.
+void bad_ptr_swap2(int* px, int* py)
+{
+    int *temp;
+    temp = px;
+    px = py;
+    py = temp;
+}
+
+// BAD
+// temp pointer is initialized to random memory address. (bad access error).
+void bad_ptr_swap(int* px, int* py)
+{
+    int *temp; // temp is a random address
+    *temp = *px; // trying to store *px in a random location of memory.
+    *px = *py;
+    *py = *temp;
+}
+
+// GOOD
+void ptr_swap(int* px, int* py)
+{
+    int temp = *px;
+    *px = *py;
+    *py = temp;
+}
+
+// GOOD
+void ref_swap(int &x, int &y)
+{
+    int temp = x;
+    x = y;
+    y = temp;
+}
